@@ -1,11 +1,12 @@
-var http = require('http')
-var fs = require('fs')
+var express = require('express')
+var url = require('url')
+var web = express()
 
-http.createServer(server).listen(8800)
-function server(request,response){
-    fs.readFile('sample.html', function(error,data){
-        response.writeHead({'Content-Type':'Text/html'})
-        response.write(data)
-        response.end()
-    })
-}
+web.listen(5500,function(){console.log('Server Started')})
+web.get('/',function(request,response){
+    response.send('Web Site Reached!')
+})
+web.get('/madhav',function(request,response){
+    response.send('Subdomain "/madhav" Reached!')
+})
+
